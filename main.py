@@ -62,12 +62,13 @@ def pin_file(filename, file, address):
 
 
 def retrieve_file(hash, address):
-    json_data = retrieve_file_from_ipfs(hash)
+    status_code, json_data = retrieve_file_from_ipfs(hash)
 
-    if json_data["owner"] == address:
-        return json_data["name"], retrieve_file_from_ipfs(json_data["image"], False)
+    if status_code == 200 and json_data["owner"] == address:
+        _, file = retrieve_file_from_ipfs(json_data["image"], False)
+        return json_data["name"], file
     else:
-        return None, None
+        return None
 
 
 def get_existing_document():
@@ -85,14 +86,14 @@ def get_existing_document():
         if file_hash is None or len(file_hash) == 0:
             st.write("Invalid file name! Enter a valid filename and try again.")
         else:
-            name, file = retrieve_file(file_hash, address)
+            file = retrieve_file(file_hash, address)
 
             if file is None:
                 st.write("Could not retrieve image! Did you select the correct owner?")
             else:
                 st.write("Document Info Retrieved:")
-                st.write(f"Name: {name}")
-                st.image(file.content)
+                st.write(f"Name: {file[0]}")
+                st.image(file[1])
 
         st.markdown("---")
 
@@ -122,7 +123,7 @@ def mint_new_documents():
         else:
             #contract = load_contract()
             artwork_ipfs_hash = pin_file(filename, file, address)
-            st.write("Upload Successful!\nSave this hash to access this document in the future!")
+            st.write("Upload Successful!\nSave this hash and keep it safe to access this document in the future!")
             st.write(artwork_ipfs_hash)
 
             uri = f"ipfs://{artwork_ipfs_hash}"

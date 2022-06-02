@@ -41,12 +41,12 @@ def pin_json_to_ipfs(json):
     return r.json()["IpfsHash"]
 
 
-def retrieve_file_from_ipfs(hash, get_json = False):
+def retrieve_file_from_ipfs(hash, get_json = True):
     url = f"https://gateway.pinata.cloud/ipfs/{hash}"
     r = requests.get(url)
 
     if get_json:
         print(r.json())
-        return r.json()
+        return r.status_code, r.json()
     else:
-        return r
+        return r.status_code, r.content
