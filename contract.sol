@@ -6,7 +6,7 @@ contract File is ERC721Full {
     using Counters for Counters.Counter;
     Counter.Counter private _tokenIds;
 
-    constructor () public ERC721Full("FileToken", "FT){}
+    constructor () public ERC721Full("FileToken", "FT"){}
 
     struct Document{
         string name; // File name
