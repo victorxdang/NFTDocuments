@@ -31,3 +31,5 @@ contract File is ERC721Full {
 
                                 documentCollection[tokenId] = Document(name, image, owner);
 }
+
+}
