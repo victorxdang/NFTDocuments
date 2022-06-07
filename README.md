@@ -15,10 +15,10 @@
 <!-- project screenshot -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="C:\Users\cloud\OneDrive\Desktop\nft.jpg" alt="C:\Users\cloud\OneDrive\Desktop\nft.jpg" width="80" height="80">
-  </a>
 
+  ![NFT](https://user-images.githubusercontent.com/73894280/172285985-4b41eb63-68f5-4449-8b73-ad22f639c143.jpg)
+
+  
   <h3 align="center">Group 1: Project 3</h3>
 
   <p align="center">
