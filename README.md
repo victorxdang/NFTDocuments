@@ -16,7 +16,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="C:\Users\cloud\OneDrive\Desktop\nft.jpg" alt="Logo" width="80" height="80">
+    <img src="C:\Users\cloud\OneDrive\Desktop\nft.jpg" alt="C:\Users\cloud\OneDrive\Desktop\nft.jpg" width="80" height="80">
   </a>
 
   <h3 align="center">Group 1: Project 3</h3>
