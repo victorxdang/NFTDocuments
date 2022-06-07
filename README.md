@@ -19,11 +19,9 @@
   ![NFT](https://user-images.githubusercontent.com/73894280/172285985-4b41eb63-68f5-4449-8b73-ad22f639c143.jpg)
 
   
-  <h3 align="center">Group 1: Project 3</h3>
+  <h3 align="center">Group 1: Project 3 - SMU FintTech Bootcamp</h3>
 
-  <p align="center">
-    Project 3 SMU Fintech Bootcamp!
-    <br />
+ 
    
 </div>
 
