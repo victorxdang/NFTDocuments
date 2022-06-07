@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 from pinata import pin_file_to_ipfs, pin_json_to_ipfs, retrieve_file_from_ipfs
 
 load_dotenv()
+
+# connect with local Ganache test environment
 w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_URI")))
 
 # obtain all of the available ethereum accounts 
@@ -21,7 +23,8 @@ def load_contract():
         Loads the contract using the address provided in the .env file. 
         This function should only execute once per page load.
     """
-    with open(Path("./contracts/compiled/art_registry_abi.json")) as f:
+
+    with open(Path("./doc_abi.json")) as f:
         artwork_abi = json.load(f)
         
     contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
@@ -42,6 +45,7 @@ def pin_file(filename, file, address):
         * filename: the name of the file.
         * file: the file to upload.
     """
+
     # pin the file to IPFS and get the address
     ipfs_file_hash = pin_file_to_ipfs(file.getvalue())
 
@@ -62,6 +66,15 @@ def pin_file(filename, file, address):
 
 
 def retrieve_file(hash, address):
+    """
+    Description:
+        Retrieves the file from Pinata.
+
+    Parameters:
+        * hash: the hash of the json file that contains the metadata for the desired file.
+        * address: the address of the owner.
+    """
+
     status_code, json_data = retrieve_file_from_ipfs(hash)
 
     if status_code == 200 and json_data["owner"] == address:
@@ -72,6 +85,11 @@ def retrieve_file(hash, address):
 
 
 def get_existing_document():
+    """
+    Description:
+        Will ask the user for the json hash and the owner's address to retrieve an existing document on Pinata.
+    """
+
     st.title("Get Existing Document")
 
     # have the user select the address to be used
@@ -83,11 +101,13 @@ def get_existing_document():
     st.markdown("---")
 
     if st.button("Get Document"):
+        # don't execute any further if the text input is empty.
         if file_hash is None or len(file_hash) == 0:
             st.write("Invalid file name! Enter a valid filename and try again.")
         else:
             file = retrieve_file(file_hash, address)
 
+            # output the document on screen
             if file is None:
                 st.write("Could not retrieve image! Did you select the correct owner?")
             else:
@@ -100,6 +120,11 @@ def get_existing_document():
 
 
 def mint_new_documents():
+    """
+    Description:
+        Asks the user for the necessary info in order to upload the document to Pinata and mint it into an NFT.
+    """
+
     st.title("Mint Your Personal Documents")
     st.markdown("---")
 
@@ -115,27 +140,26 @@ def mint_new_documents():
     st.markdown("---")
 
     # upload the file and do proper null checks
-    if st.button("Upload Document"):
+    if st.button("Mint Document"):
         if filename is None or len(filename) == 0:
             st.write("Invalid file name! Enter a valid filename and try again.")
         elif file is None:
             st.write("No file uploaded! Please upload a file and try again.")
         else:
-            #contract = load_contract()
+            contract = load_contract()
             artwork_ipfs_hash = pin_file(filename, file, address)
             st.write("Upload Successful!\nSave this hash and keep it safe to access this document in the future!")
             st.write(artwork_ipfs_hash)
 
             uri = f"ipfs://{artwork_ipfs_hash}"
-            #tx_hash = contract.functions.registerDocument(address, filename, uri).transact({
-            #    "from": address,
-            #    "gas": 1000000
-            #})
+            tx_hash = contract.functions.mintDocument(filename, address, uri).transact({
+                "from": address,
+                "gas": 1000000
+            })
 
-            #receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-            #st.write("Transaction receipt mined:")
-            #st.write(dict(receipt))
-            #st.write("Test Output")
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.write("Transaction receipt mined:")
+            st.write(dict(receipt))
 
         st.markdown("---")
 

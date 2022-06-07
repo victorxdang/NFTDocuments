@@ -6,7 +6,7 @@ contract File is ERC721Full {
     using Counters for Counters.Counter;
     Counter.Counter private _tokenIds;
 
-    constructor () public ERC721Full("FileToken", "FT){}
+    constructor () public ERC721Full("FileToken", "FT"){}
 
     struct Document{
         string name; // File name
@@ -19,7 +19,7 @@ contract File is ERC721Full {
 
     function mintDocument (string memory name,
                             string memory image, 
-                            address owner
+                            address owner,
                             uint256 tokenId,
                             string memory tokenURI) public returns (uint256)
                             {
@@ -30,4 +30,5 @@ contract File is ERC721Full {
                                 _setTokenURI(tokenId, tokenURI);
 
                                 documentCollection[tokenId] = Document(name, image, owner);
+                            }
 }
