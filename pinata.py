@@ -23,8 +23,12 @@ def pin_file_to_ipfs(file):
     """
     Description:
         Pins the file to IPFS.
+
+
     Parameters:
         * file: the file to be uploaded.
+
+
     Returns:
         The hash of the file that was uploaded.
     """
@@ -43,8 +47,12 @@ def pin_json_to_ipfs(json):
     """
     Description:
         Pins the json file to IPFS.
+
+
     Parameters:
         * json: the json file to be uploaded.
+
+
     Returns:
         The hash of the file that was uploaded.
     """
@@ -59,7 +67,9 @@ def pin_json_to_ipfs(json):
     return r.json()["IpfsHash"]
 
 
-def retrieve_file_from_ipfs(hash, get_json=True):
+
+def retrieve_file_from_ipfs(hash, get_json = True):
+
     """
     Description:
         Gets the file from Pinata using the provided hash. Set get_json to true to receive the return message as 
@@ -67,6 +77,8 @@ def retrieve_file_from_ipfs(hash, get_json=True):
     Parameters:
         * hash: the hash of the file to retrieve from Pinata.
         * get_json: will return the contents as a json if true, otherwise the raw content if false.
+
+
     Returns:
         The json or raw file from Pinata.
     """

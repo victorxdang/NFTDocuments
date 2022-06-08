@@ -24,7 +24,9 @@ def load_contract():
         This function should only execute once per page load.
     """
 
-    with open(Path("./abi.json")) as f:
+
+    with open(Path("./doc_abi.json")) as f:
+
         artwork_abi = json.load(f)
 
     contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
@@ -68,6 +70,9 @@ def retrieve_file(hash, address):
     """
     Description:
         Retrieves the file from Pinata.
+
+
+
     Parameters:
         * hash: the hash of the json file that contains the metadata for the desired file.
         * address: the address of the owner.
