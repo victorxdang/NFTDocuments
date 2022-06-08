@@ -1,35 +1,36 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.0; // Version we are using, when compiling if any error change it to 0.5.0
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC721/ERC721Full.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC721/ERC721Full.sol"; // ERC721Full contract
 
 contract File is ERC721Full {
-    using Counters for Counters.Counter;
-    Counter.Counter private _tokenIds;
+    constructor() public ERC721Full("FileToken", "FT") {} // Takes the name of the file and the symbol of the file
 
-    constructor () public ERC721Full("FileToken", "FT"){}
-
-    struct Document{
+    struct Document {
         string name; // File name
-        string image; // ipsfs hash of the file
-        string owner; // owner of the file
+        address owner; // owner of the file
     }
     mapping(uint256 => Document) public documentCollection;
 
-    event DocumentAdded(uint256 tokenId, string name, string image, string owner, string reportURI);
+    /*event DocumentAdded(
+        string memory name,
+        address owner,
+        string memory uri); */
+    // Event to be fired when a document is added
 
-    function mintDocument (string memory name,
-                            string memory image, 
-                            address owner
-                            uint256 tokenId,
-                            string memory tokenURI) public returns (uint256)
-                            {
-                                uint256 tokenId = _tokenIds.current();
+    function mintDocument(
+        string memory name, // Name of the document
+        address owner, // Owner of the document
+        string memory uri // URI of the document
+    ) public returns (uint256) {
+        // Returns the id of the document
+        uint256 tokenId = totalSupply();
 
-                                _mint(owner, tokenId);
+        _mint(owner, tokenId); // Mints the document
 
-                                _setTokenURI(tokenId, tokenURI);
+        _setTokenURI(tokenId, uri); // Sets the URI of the document
 
-                                documentCollection[tokenId] = Document(name, image, owner);
-}
+        documentCollection[tokenId] = Document(name, owner); // Adds the document to the collection
 
+        return tokenId; // Returns the id of the document
+    }
 }
