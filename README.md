@@ -63,9 +63,8 @@
 Our final project will take any personal document and mint it to a NFT on a test Blockchain 
 
 Here's why:
-* A non-fungible item is unique and can’t be copied or substituted.
+* A Non-Fungible Token (NFT) item is unique and can’t be copied or substituted.
 * NFT's can be used to prove ownership
-* You should implement DRY principles to the rest of your life :smile:
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -87,8 +86,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Have a document that you want to perserve on the Blockchain. 
 
 ### Prerequisites
 
@@ -115,7 +113,8 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/73894280/172710169-3f9d2f8a-9589-4d91-8800-906c2b2c7b42.gif)
+
+![streamlit_demo (1) (1)](https://user-images.githubusercontent.com/73894280/172714376-849c36cd-246b-4783-9e8d-0eaf2c8c69d3.gif)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -125,10 +124,7 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
+- [ ] Add additional file types in the future  
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
