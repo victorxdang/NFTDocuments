@@ -63,8 +63,8 @@
 Our final project will take any personal document and mint it to a NFT on a test Blockchain 
 
 Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
+* A non-fungible item is unique and can’t be copied or substituted.
+* NFT's can be used to prove ownership
 * You should implement DRY principles to the rest of your life :smile:
 
 
