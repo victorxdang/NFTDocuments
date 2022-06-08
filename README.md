@@ -115,6 +115,8 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/73894280/172710169-3f9d2f8a-9589-4d91-8800-906c2b2c7b42.gif)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
