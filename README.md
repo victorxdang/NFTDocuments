@@ -58,7 +58,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Our final project will take any personal document and mint it to a NFT on a test Blockchain 
 
@@ -72,8 +71,6 @@ Here's why:
 
 
 ### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * [Streamlit](https://streamlit.io/)
 * [Json](https://www.json.org/)
