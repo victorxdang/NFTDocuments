@@ -12,11 +12,11 @@ load_dotenv()
 # connect with local Ganache test environment
 w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_URI")))
 
-# obtain all of the available ethereum accounts 
+# obtain all of the available ethereum accounts
 accounts = w3.eth.accounts
 
 
-@st.cache(allow_output_mutation = True)
+@st.cache(allow_output_mutation=True)
 def load_contract():
     """
     Description:
@@ -24,14 +24,16 @@ def load_contract():
         This function should only execute once per page load.
     """
 
+
     with open(Path("./doc_abi.json")) as f:
+
         artwork_abi = json.load(f)
-        
+
     contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
     contract = None
 
     if contract_address is not None:
-        contract = w3.eth.contract(address = contract_address, abi = artwork_abi)
+        contract = w3.eth.contract(address=contract_address, abi=artwork_abi)
 
     return contract
 
@@ -40,7 +42,6 @@ def pin_file(filename, file, address):
     """
     Description:
         Upload the file to Pinata IPFS.
-
     Parameters:
         * filename: the name of the file.
         * file: the file to upload.
@@ -70,6 +71,8 @@ def retrieve_file(hash, address):
     Description:
         Retrieves the file from Pinata.
 
+
+
     Parameters:
         * hash: the hash of the json file that contains the metadata for the desired file.
         * address: the address of the owner.
@@ -93,7 +96,7 @@ def get_existing_document():
     st.title("Get Existing Document")
 
     # have the user select the address to be used
-    address = st.selectbox("Select Document Owner", options = accounts)
+    address = st.selectbox("Select Document Owner", options=accounts)
 
     # have the user input the pinned document hash
     file_hash = st.text_input("Document Hash:")
@@ -109,14 +112,14 @@ def get_existing_document():
 
             # output the document on screen
             if file is None:
-                st.write("Could not retrieve image! Did you select the correct owner?")
+                st.write(
+                    "Could not retrieve image! Did you select the correct owner?")
             else:
                 st.write("Document Info Retrieved:")
                 st.write(f"Name: {file[0]}")
                 st.image(file[1])
 
         st.markdown("---")
-
 
 
 def mint_new_documents():
@@ -129,14 +132,14 @@ def mint_new_documents():
     st.markdown("---")
 
     # have the user select the address to be used
-    address = st.selectbox("Select Document Owner", options = accounts)
+    address = st.selectbox("Select Document Owner", options=accounts)
     st.markdown("---")
 
     # get the filename for this document
     filename = st.text_input("Document Name:")
 
     # get the document file
-    file = st.file_uploader("Document File:", type = ["jpg", "jpeg", "png"])
+    file = st.file_uploader("Document File:", type=["jpg", "jpeg", "png"])
     st.markdown("---")
 
     # upload the file and do proper null checks
@@ -148,7 +151,8 @@ def mint_new_documents():
         else:
             contract = load_contract()
             artwork_ipfs_hash = pin_file(filename, file, address)
-            st.write("Upload Successful!\nSave this hash and keep it safe to access this document in the future!")
+            st.write(
+                "Upload Successful!\nSave this hash and keep it safe to access this document in the future!")
             st.write(artwork_ipfs_hash)
 
             uri = f"ipfs://{artwork_ipfs_hash}"
